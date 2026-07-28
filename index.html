@@ -7,16 +7,22 @@
 
     <meta name="viewport" content="width=device-width">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    
     <style>
-      html, body {
+    html, body {
         position: relative;
         height: 100%;
         margin: 0;
         padding: 0;
+        background-color: rgb(255, 254, 251);
+        font-family: 'Cormorant Garamond', serif;
       }
       main {
         position: relative;
-        top: 40%;
+        top: 50%;
         transform: translateY(-50%);
         text-align: center;
       }
@@ -33,16 +39,209 @@
       a:hover {
         text-decoration: underline;
       }
+
+      .container {
+        width: 60%;
+        margin: 0 auto;
+      }
+
+      .header_container {
+        margin-bottom: 2em;
+      }
+
+      .project_container {
+        text-align: left;
+        margin-bottom: 1em;
+        margin-top: 2em;
+      }
+
+      .project {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+        width: 80%;
+      }
+
+      .project_name {
+        font-weight: bold;
+        padding-right: 1em;
+        white-space: nowrap;
+      }
+
+      .project_description {
+        border-left: 2px solid #ccc;
+        padding-left: 1em;
+      }
+
+      #project_header {
+        margin-left: 0.5em;
+      }
+
+      .project_container ul {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        width: 90%;
+        margin: 1em 2em 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .project_container li,
+      .project {
+        display: contents;
+      }
+
+      .project_name,
+      .project_description {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+      }
+
+      .link_separator {
+        color: #a0a0a0;
+      }
+      
+      .link_row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        margin-top: 2em;
+        position: relative;
+      }
+
+      .link_icon {
+        color: #464646;
+        transition: color 0.1s ease;
+      }
+
+      .link_icon:hover {
+        color: #545454;
+        transition: color 0.1s ease;
+      }
+
+      .link_icon {
+        display: block;
+        width: 24px;
+        height: 24px;
+        background-color: currentColor;
+
+        -webkit-mask: var(--icon) center / contain no-repeat;
+        mask: var(--icon) center / contain no-repeat;
+      }
+
+      .formatted_link {
+        text-decoration: underline;
+        text-decoration-color: #a0a0a0;
+        text-underline-offset: 4px;
+      }
+
+      .formatted_link:visited {
+        text-decoration: underline;
+        text-decoration-color: #a0a0a0;
+        text-underline-offset: 4px;
+      }
+
+      .formatted_link:hover {
+        text-decoration: underline;
+        text-decoration-color: #1e1e1e;
+        text-underline-offset: 4px;
+      }
+
+      .header_row {
+        margin-top: 0.2em;
+      }
+
+      /* a:not(:has(.link_icon))::after {
+        content: "";
+        display: inline-block;
+        width: 0.75em;
+        height: 0.75em;
+        margin-left: 0.25em;
+        vertical-align: middle;
+        background: url("https://www.svgrepo.com/show/510970/external-link.svg") center / contain no-repeat;
+      } */
+
     </style>
   </head>
   <body>
     <main>
-      <h1>Tyler Zaeske</h1>
-      <br>
-      <a href="https://osint.industries" title="https://osint.industries">Dev at OSINT Industries</a>
-      <br>
-      <a href="mailto:tyler@osint.industries" title="tyler@osint.industries">tyler@osint.industries</a>
-      
+      <div class="container">
+        <div class="header_container">
+          <h1 class="name">Tyler Zaeske</h1>
+          <div class="header_row title">
+            <span>Developer at </span><a class="formatted_link" target="_blank" href="https://osint.industries">OSINT Industries</a>
+          </div>
+          <div class="header_row email">
+            <a target="_blank" class="formatted_link" href="mailto:tyler@tylerzaeske.com">tyler@tylerzaeske.com</a>
+          </div>
+          <div class="link_row">
+            <a target="_blank" href="https://github.com/ByroBuff">
+              <span class="link_icon" style="--icon: url('https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg');"></span>
+            </a>
+            <span class="link_separator">•</span>
+            <a target="_blank" href="https://www.linkedin.com/in/tyler-zaeske-10a310249/">
+              <span class="link_icon" style="--icon: url('https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg');"></span>
+            </a>
+          </div>
+        </div>
+        <hr>
+        <div class="project_container">
+          <h1 id="project_header">Projects</h1>
+          <ul>
+          </ul>
+        </div>
+      </div>
     </main>
   </body>
+  <script>
+
+    function toHtml(project_json) {
+      const project = document.createElement('div');
+      project.classList.add('project');
+
+      const name = document.createElement('span');
+      name.classList.add('project_name');
+
+      const link = document.createElement('a');
+      link.classList.add('formatted_link');
+      link.setAttribute('href', project_json.link);
+      link.setAttribute('target', '_blank');
+      link.textContent = project_json.name;
+
+      name.appendChild(link);
+
+      const description = document.createElement('span');
+      description.classList.add('project_description');
+      description.textContent = project_json.description;
+
+      project.appendChild(name);
+      project.appendChild(description);
+
+      return project;
+    }
+
+    const projects = document.querySelectorAll('.project');
+
+    fetch("projects.json")
+      .then(response => response.json())
+      .then(data => {
+        const projectContainer = document.querySelector('.project_container ul');
+        data.forEach(project_json => {
+          const projectElement = toHtml(project_json);
+          const listItem = document.createElement('li');
+          listItem.appendChild(projectElement);
+          projectContainer.appendChild(listItem);
+        });
+      })
+      .catch(error => console.error('Error fetching projects:', error));
+
+    projects.forEach((project, index) => {
+      if (index !== projects.length - 1) {
+        project.style.borderBottom = '1px solid #ccc';
+      }
+    });
+  </script>
 </html>
