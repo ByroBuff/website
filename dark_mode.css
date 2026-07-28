@@ -1,0 +1,43 @@
+body.dark .moon_icon {
+	display: none;
+}
+
+body.dark .sun_icon {
+	display: block;
+}
+
+body.dark {
+	background-color: #181818;
+    
+	color: #eeeeee;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.dark hr,
+body.dark .project_description {
+	border-color: #555;
+}
+
+body.dark .link_icon {
+	color: #cccccc;
+}
+
+body.dark .link_icon:hover {
+	color: #ffffff;
+}
+
+body.dark .formatted_link,
+body.dark .formatted_link:visited {
+	text-decoration-color: #777;
+    transition: text-decoration-color 0.1s ease;
+}
+
+body.dark .formatted_link:hover {
+	text-decoration-color: #eeeeee;
+    transition: text-decoration-color 0.1s ease;
+}
+
+body.dark button {
+	background-color: #eeeeee;
+	color: #181818;
+}
