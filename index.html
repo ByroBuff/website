@@ -9,7 +9,7 @@
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="dark_mode.css">
 	</head>
@@ -52,6 +52,10 @@
 				</button>
 			</div>
 
+			<div class="vim-container" style="display: none;">
+				<span id="vim-prompt">:</span><input type="text" autocomplete="off" spellcheck="false" aria-label="Vim command" id="vim-input"/>
+			</div>
+
 			<div class="container">
 				<div class="header_container">
 					<h1 class="name">Tyler Zaeske</h1>
@@ -75,6 +79,9 @@
 							 <svg class="link_icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 448 512"><!-- Icon from Academicons by James Walsh - https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL --><path fill="currentColor" d="M48 32C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm98.88 133.234c19.636 0 37.082 6.789 49.929 16.971c11.88 9.452 17.444 18.907 22.298 27.393l-33.923 16.949c-2.427-5.565-5.347-11.387-12.846-17.682c-8.248-6.552-16.478-8.484-23.524-8.484c-27.626 0-42.17 25.693-42.17 54.287c0 37.573 19.161 56.22 42.17 56.22c22.3 0 31.278-15.51 37.08-25.435L219.6 302.66c-6.315 9.926-12.374 19.635-25.95 29.069c-7.262 5.09-23.977 15.037-47.736 15.037C100.586 346.766 64 313.81 64 255.87c0-50.636 34.415-90.637 82.88-90.637m75.483 5.328h45.565L303.31 292.24l35.125-121.678H384l-59.379 171.112H281.01z"/></svg>
 						</a>
 					</div>
+				</div>
+				<div class="date-time">
+					<span id="date">date</span>
 				</div>
 				<hr>
 				<div class="project_container">
@@ -169,7 +176,70 @@
 			if (storedTheme) {
 				setTheme(storedTheme);
 			} else {
-				setTheme("light");
+				setTheme('light');
+			}
+		});
+
+		function updateDateTime() {
+			const now = new Date();
+			// YYYY-MM-DD HH:mm:ss
+			const options = {
+				year: 'numeric',
+				month: '2-digit',
+				day: '2-digit',
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit',
+				hour12: false
+			};
+			const formattedDate = now.toLocaleDateString(undefined, options);
+			document.getElementById('date').textContent = formattedDate;
+		}
+
+		updateDateTime();
+		setInterval(updateDateTime, 1000);
+
+		function openVimCommand() {
+			const vimContainer = document.querySelector('.vim-container');
+			const vimInput = document.getElementById('vim-input');
+			vimContainer.style.display = 'block';
+			vimInput.focus();
+		}
+
+		function closeVimCommand() {
+			const vimContainer = document.querySelector('.vim-container');
+			const vimInput = document.getElementById('vim-input');
+			vimInput.value = '';
+			vimContainer.style.display = 'none';
+		}
+
+		const vimInput = document.getElementById('vim-input');
+		vimInput.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter') {
+				const command = vimInput.value.trim();
+				if (command === 'q') {
+					window.close();
+				}
+				if (command === 'dark') {
+					setTheme('dark');
+				}
+
+				if (command === 'light') {
+					setTheme('light');
+				}
+				console.log(command);
+				closeVimCommand();
+			}
+
+			if (event.key === 'Escape') {
+				closeVimCommand();
+			}
+		});
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key === ':') {
+				event.preventDefault();
+				openVimCommand();
 			}
 		});
 	</script>
