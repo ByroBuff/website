@@ -1,22 +1,22 @@
 [
     {
         "name": "Chronicle",
-        "description": "News aggregator and analyzer based on GDELT but open source and extensible via additional RSS feeds and entity extractors.",
+        "description": "News aggregator and analyzer based on GDELT but open source and extensible via additional RSS feeds and entity extractors",
         "link": "https://github.com/ByroBuff/chronicle/"
     },
     {
         "name": "Particle Attraction",
-        "description": "A particle simulation that utilises asyemtrical attractions between colors to create surprisingly complex, free moving forms.",
+        "description": "Particle simulation that utilises asyemtrical attractions between colors to create surprisingly complex, free moving forms",
         "link": "https://github.com/ByroBuff/particle-attraction"
     },
     {
         "name": "Mosaics",
-        "description": "A simple program to generate videos with pixels replaces by small images based on brightness value to create a mosaic like effect",
+        "description": "Simple program to generate videos with pixels replaces by small images based on brightness value to create a mosaic like effect",
         "link": "https://github.com/ByroBuff/mosaics"
     },
     {
         "name": "Modulo Automata",
-        "description": "An interactive cellular-automata playground with the key component being modular arithmetic",
+        "description": "Interactive cellular-automata playground with the key component being modular arithmetic",
         "link": "https://github.com/ByroBuff/modulo-automata"
     }
 ]
