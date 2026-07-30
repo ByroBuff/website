@@ -35,6 +35,8 @@ main {
 	text-align: center;
 }
 
+::selection { background-color: #eeeeee;}
+
 h1 {
 	margin: 0;
 	display: inline;
