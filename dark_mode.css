@@ -13,6 +13,8 @@ body.dark {
 	transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+body.dark ::selection { background-color: #444444}
+
 body.dark input {
 	color: #eeeeee;
 }
