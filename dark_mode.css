@@ -7,10 +7,27 @@ body.dark .sun_icon {
 }
 
 body.dark {
-	background-color: #181818;
-    
-	color: #eeeeee;
+	background-color: #352104;
+    --base-color-dark: 97, 74, 41;
+	color: #e0dfd5;
 	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+
+body.dark .cell.level-0 {
+    background-color: rgba(var(--base-color-dark), var(--level-0));
+}
+body.dark .cell.level-1 {
+    background-color: rgba(var(--base-color-dark), var(--level-1));
+}
+body.dark .cell.level-2 {
+    background-color: rgba(var(--base-color-dark), var(--level-2));
+}
+body.dark .cell.level-3 {
+    background-color: rgba(var(--base-color-dark), var(--level-3));
+}
+body.dark .cell.level-4 {
+    background-color: rgba(var(--base-color-dark), var(--level-4));
 }
 
 body.dark ::selection { background-color: #444444}
