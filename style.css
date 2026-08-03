@@ -25,6 +25,7 @@
 
     gap: var(--gap);
     padding: var(--padding);
+	pointer-events: none;
 }
 
 .cell {
